@@ -113,44 +113,50 @@ export default class Main extends Component<{}, State> {
     }
 
     render() {
-        return <><div className='ms-5 mt-5'>
-            <nav>
-                <a href="#" className='App ms-5'>Új tag felvétele</a> <a href="https://petrik.hu/" className='App ms-3'>Petrik honlap</a>
-                <h2 className='ms-3 mt-4'>Petrik könyklub</h2>
-            </nav>
-            <div className="col-lg-12 col-md-12 col-sm-12">
-                <div className="col-lg-4">
-                {this.state.members.map((members: Members) => (
-                        <div className="card mt-2 ms-2 me-2">
-                            <div className="card-body">
-                                <h4 className="ms-2">{members.name}</h4>
-                                <p className="ms-2"> Született: &ensp; {members.birth_date}</p>
-                                <p className="ms-2">Csatlakozott: &ensp; {members.created_at}</p>
-                                <div className="picture">{this.pictureDecider(members.gender)}</div>
-                            </div>
-                            <button className="btn" onClick={this.handlePayment}>Tagdij befizetése</button>
+        return (
+            <>
+              <div className='ms-5 mt-5'>
+                <nav>
+                  <a href="#newMemberAdd" className='App ms-5'>Új tag felvétele</a>
+                  <a href="https://petrik.hu/" className='App ms-3'>Petrik honlap</a>
+                  <h2 className='ms-3 mt-4'>Petrik könyklub</h2>
+                </nav>
+                <div className="row">
+                  {this.state.members.map((members: Members) => (
+                    <div className="col-lg-4 col-md-4 col-sm-12">
+                      <div className="card mt-5 ms-2 me-2">
+                        <div className="card-body">
+                          <h4 className="ms-2">{members.name}</h4>
+                          <p className="ms-2"> Született: &ensp; {members.birth_date}</p>
+                          <p className="ms-2">Csatlakozott: &ensp; {members.created_at}</p>
+                          <div className="picture">{this.pictureDecider(members.gender)}</div>
                         </div>
-                ))}
-                </div>
-            </div>
-            <form className="d-block m-auto form text-center" onSubmit={this.addNewMember}>
-                    <h2>Tagfelvétel</h2>
-                    <div className="d-block m-auto form-control">
-                        <label htmlFor="nameInp">Név </label>
-                        <br />
-                        <input type="text" id="nameInp"  required value={this.state.name} onChange={e => this.setState({name: e.currentTarget.value})} /><br />
-                        <label htmlFor="date">Születési Idő</label>
-                        <br />
-                        <input type="date" id="date" required value={this.state.birth_date} onChange={e => this.setState({birth_date: e.currentTarget.value})}/><br />
-                        <label htmlFor="gender">Nem</label>
-                        <br />
-                        <input type="text" id="gender" required value={this.state.gender} onChange={e => this.setState({gender: e.currentTarget.value})}/><br />
-                        <button type="submit">Hozzáadás</button>
+                        <button className="btn" onClick={this.handlePayment}>Tagdij befizetése</button>
+                      </div>
                     </div>
-            </form>
-        </div>
-            <footer className="ms-5 mt-5">
+                  ))}
+                </div>
+                <form className="d-block m-auto form text-center mt-5" onSubmit={this.addNewMember} id="newMemberAdd">
+                  <h2>Tagfelvétel</h2>
+                  <div className="d-block m-auto form-control">
+                    <label htmlFor="nameInp">Név </label>
+                    <br />
+                    <input type="text" id="nameInp" required value={this.state.name} onChange={e => this.setState({ name: e.currentTarget.value })} /><br />
+                    <label htmlFor="date">Születési Idő</label>
+                    <br />
+                    <input type="date" id="date" required value={this.state.birth_date} onChange={e => this.setState({ birth_date: e.currentTarget.value })} /><br />
+                    <label htmlFor="gender">Nem</label>
+                    <br />
+                    <input type="text" id="gender" required value={this.state.gender} onChange={e => this.setState({ gender: e.currentTarget.value })} /><br />
+                    <button type="submit">Hozzáadás</button>
+                  </div>
+                </form>
+              </div>
+              <footer className="ms-5 mt-5">
                 <p>Készítette: Zuber Marcell</p>
-            </footer></>
+              </footer>
+            </>
+          );
+          
     }
 }
